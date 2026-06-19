@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: jackpot-service
+  # Kafka is wired manually (RealKafkaConfig) so the embedded-broker address can be resolved at
+  # runtime; Boot's Kafka auto-configuration is excluded to avoid duplicate/!conflicting beans.
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
+  datasource:
+    url: jdbc:h2:mem:jackpot;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+
+jackpot:
+  kafka:
+    # embedded (default, in-JVM broker) | external (real broker) | log-only (mock, no consumer)
+    mode: embedded
+  contention:
+    max-retries: 3
+    backoff-ms: 50
+  initializer:
+    file: classpath:jackpots.json
+
+# For external mode, point this at the real broker:
+# spring:
+#   kafka:
+#     bootstrap-servers: localhost:9092
+
+logging:
+  level:
+    com.sportygroup.jackpot: INFO

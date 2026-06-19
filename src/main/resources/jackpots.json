@@ -1,0 +1,14 @@
+[
+  {
+    "id": "jackpot-1",
+    "initialPool": 1000.00,
+    "contribution": { "type": "FIXED", "initialPct": 0.10 },
+    "reward": { "type": "FIXED", "initialChance": 0.01 }
+  },
+  {
+    "id": "jackpot-2",
+    "initialPool": 5000.00,
+    "contribution": { "type": "VARIABLE", "initialPct": 0.20, "minPct": 0.05, "poolThreshold": 100000 },
+    "reward": { "type": "VARIABLE", "initialChance": 0.001, "poolLimit": 1000000 }
+  }
+]

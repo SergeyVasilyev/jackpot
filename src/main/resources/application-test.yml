@@ -1,0 +1,6 @@
+jackpot:
+  kafka:
+    mode: embedded
+  reward:
+    # Fixed RNG seed so reward outcomes are deterministic in tests (A16).
+    rng-seed: 42
