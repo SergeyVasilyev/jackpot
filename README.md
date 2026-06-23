@@ -202,7 +202,8 @@ comments cite them by tag (e.g. `A5`). This list is the canonical reference for 
   `log-only` producer is kept but is not the default because it does not drive the consumer.
 - **A18 — Reward amount = the whole jackpot pool, returned in the response.** The assignment does not
   define the payout size; since the pool resets to its initial value on a win, the winner takes the
-  entire pool at win time (`rewardAmount = poolAfter`), persisted and returned by `GET …/reward`
+  entire pool at win time (`rewardAmount = poolAfter`). It is persisted at win time in the consumer
+  (`RewardService.evaluate`, A2) and later read back by the read-only `GET …/reward`
   (present only when `won = true`).
 - **A19 — Inbound bet amount truncated to the money scale, surplus digits discarded.** A `betAmount`
   with more than 4 decimals is truncated — dropped, not rounded — with `RoundingMode.DOWN` before
